@@ -7,8 +7,10 @@ function App() {
     /* todo
     1. 내 돈을 입력하면 얼마나 해당코인으로 바꿔줄 수 있는 지 구하기
     */
-    const [myMoney, setMyMoney] = useState();
-    const [changeCoin, setChangeCoin] = useState([]);
+    const [myMoney, setMyMoney] = useState(0);
+    const [changeCoin, setChangeCoin] = useState(Infinity);
+
+    const [resultCoin, setResultCoin] = useState(0);
 
     const onMoney = (e) => {
         setMyMoney(e.target.value);
@@ -16,12 +18,12 @@ function App() {
 
     const onSelect = (e) => {
         const price = coins[e.target.selectedIndex - 1].quotes.USD.price;
-        setMyMoney((currentArray) => [price]);
+        setChangeCoin(parseFloat(price));
     };
 
-    const changeGetCoin = (e) => {
-        setChangeCoin((current) => coins[e.target.selectedIndex - 1].quotes.USD.price / setMyMoney);
-    };
+    useEffect(() => {
+        setResultCoin(myMoney / changeCoin);
+    }, [myMoney, changeCoin]);
 
     useEffect(() => {
         fetch("https://api.coinpaprika.com/v1/tickers")
@@ -34,30 +36,31 @@ function App() {
 
     return (
         <div>
-            <h1>The conins! {loading ? "" : `(${coins.length})`}</h1>
+            <h1>The conins! {loading ? "" : `(${coins.length})개`}</h1>
             {loading ? (
                 <strong>Loading....</strong>
             ) : (
                 <>
-                    <select onInput={onSelect}>
-                        {coins.map((coin) => (
-                            <option key={coin.id}>
-                                {coin.name} ({coin.symbol}) : ${coin.quotes.USD.price} USD
-                            </option>
+                <form>
+                    <select onChange={onSelect}>
+                        <option>select you want coin</option>
+                        {coins.map((coin, index) => (
+                                <option key={coin.id}>
+                                    {coin.name} ({coin.symbol}) : ${coin.quotes.USD.price} USD
+                                </option>
                         ))}
                     </select>
+                    <hr/>
                     <div>
+                        <label>My money</label>
                         <input placeholder="My Money" onChange={onMoney} value={myMoney} type="number" />
                     </div>
+                    <br />
                     <div>
-                        <input
-                            placeholder="Get Coin"
-                            onChange={changeGetCoin}
-                            value={changeCoin / myMoney}
-                            type="number"
-                            disabled
-                        />
+                        <label>Get coin</label>
+                        <input placeholder="Get Coin" value={resultCoin} type="number" disabled />
                     </div>
+                </form>
                 </>
             )}
         </div>
