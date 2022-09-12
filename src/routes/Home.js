@@ -19,7 +19,7 @@ function Home() {
     useEffect(() => {
         getMovies();
     }, []);
-    console.log(movies);
+    //console.log(movies);
     return (
         <div className={styles.container}>
             {loading ? (
@@ -32,6 +32,7 @@ function Home() {
                         <Movie
                             key={movie.id}
                             id={movie.id}
+                            year={movie.year}
                             coverImg={movie.medium_cover_image}
                             title={movie.title}
                             summary={movie.summary}

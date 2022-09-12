@@ -14,6 +14,17 @@
         0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
 }
 
+a {
+    margin-bottom: 5px;
+    font-size: 22px;
+    color: #2c2c2c;
+    text-decoration: none;
+}
+
+p {
+    font-size: 18px;
+}
+
 .movie__img {
     position: relative;
     top: -50px;
@@ -31,13 +42,6 @@
     text-decoration: none;
 }
 
-.movie__title a {
-    margin-bottom: 5px;
-    font-size: 24px;
-    color: #2c2c2c;
-    text-decoration: none;
-}
-
 .movie__genres {
     list-style: none;
     padding: 0;
@@ -50,5 +54,5 @@
 .movie__genres li,
 .movie__year {
     margin-right: 10px;
-    font-size: 14px;
+    font-size: 18px;
 }
