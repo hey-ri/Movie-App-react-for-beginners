@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import styles from "./Nav.css";
+import "./Nav.css";
 
 function Navigation() {
     const [url, setUrl] = useState("/");
@@ -8,8 +8,6 @@ function Navigation() {
 
     useEffect(() => {
         if (location !== "/") {
-            setUrl(url);
-        } else {
             setUrl(url);
         }
     }, [location]);
