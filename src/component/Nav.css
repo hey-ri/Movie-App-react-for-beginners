@@ -1,0 +1,12 @@
+.home {
+    width: 120px;
+    height: 60px;
+    display: block;
+    text-align: center;
+    line-height: 60px;
+    border-radius: 20px;
+    position: absolute;
+    top: 40px;
+    right: 70px;
+    background-color: #f2f2f2;
+}

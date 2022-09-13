@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import styles from "./Nav.css";
 
 function Navigation() {
     const [url, setUrl] = useState("/");
@@ -15,7 +16,9 @@ function Navigation() {
 
     return (
         <div>
-            <Link to="/">Home</Link>
+            <Link to="/" className="home">
+                Home
+            </Link>
         </div>
     );
 }
