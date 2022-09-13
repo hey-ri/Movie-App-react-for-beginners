@@ -2,13 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import "./MovieDetail.css";
 
 function MovieDetail({ coverImg, url, title, genres, year, rating, summary }) {
     return (
-        <div>
-            <div className="imgBox">
+        <div className="movie_detail_box">
+            <div className="img_box">
                 <img src={coverImg} alt={title} />
-                <a href={url}>Go To site</a>
+                <a href={url} target="_blank" className="go">
+                    Go To site
+                </a>
             </div>
 
             <div className="info">
@@ -22,11 +25,13 @@ function MovieDetail({ coverImg, url, title, genres, year, rating, summary }) {
                           ))
                         : null}
                 </ul>
-                <p className="detail_year">{year}</p>
-                <p className="detail_rating">
-                    <FontAwesomeIcon icon={faStar} className="ratingStar" />
-                    {rating}
-                </p>
+                <div className="star_year">
+                    <p className="detail_rating">
+                        <FontAwesomeIcon icon={faStar} className="ratingStar" />
+                        {rating}
+                    </p>
+                    <p className="detail_year">/ {year}</p>
+                </div>
                 <p className="detail_summary">{summary}</p>
             </div>
         </div>
